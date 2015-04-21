@@ -37,7 +37,7 @@ def run_dynamics(n, dt, xlim=(0, 1), ylim=(0, 1)):
     mol = init_molecule()
 
     # Animation stuff
-    fig, ax = plt.subplot()
+    fig, ax = plt.subplots()
     line, = ax.plot((mol.p1.pos[0], mol.p2.pos[0]), (mol.p1.pos[1], mol.p2.pos[1]), '-o')
     ax.clear()
     plt.xlim(xlim)
