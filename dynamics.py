@@ -17,15 +17,18 @@ import particle
 def init_molecule():
     """Create Particles p1 and p2 inside boundaries and return a molecule
     connecting them"""
-
-    pass
+    mol = particle.Molecule(0.2, 0.2, 1, 2, 1, 0.5)
+    return mol
 
 
 # TODO: Implement this function
 def time_step(dt, mol):
-    """Sets new positions and velocities of the particles attached to mol"""
-    
-    pass
+    """Sets new positions and velocities of the particles attached to
+    mol"""
+    mol.p1.vel = mol.p1.vel + (mol.get_force()/mol.m1)*(dt/2)
+    mol.p2.vel = mol.p2.vel + (-mol.get_force()/mol.m2)*(dt/2)
+    mol.p1.pos = mol.p1.pos + mol.p1.vel*dt
+    mol.p2.pos = mol.p2.pos + mol.p2.vel*dt
 
 
 #############################################
@@ -38,7 +41,7 @@ def run_dynamics(n, dt, xlim=(0, 1), ylim=(0, 1)):
 
     # Animation stuff
     fig, ax = plt.subplots()
-    line, = ax.plot((mol.p1.pos[0], mol.p2.pos[0]), (mol.p1.pos[1], mol.p2.pos[1]), '-o')
+    line, = ax.plot((mol.p1.pos, mol.p2.pos), (mol.p1.pos, mol.p2.pos), '-o')
     ax.clear()
     plt.xlim(xlim)
     plt.ylim(ylim)
